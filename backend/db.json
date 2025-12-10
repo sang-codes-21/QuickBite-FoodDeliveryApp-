@@ -1,0 +1,482 @@
+{
+  "menuItems": [
+    {
+      "id": "1",
+      "title": "Margherita Pizza",
+      "image": "https://images.pexels.com/photos/4109087/pexels-photo-4109087.jpeg",
+      "restaurantChain": "Fire and Ice Pizzeria",
+      "price": 500,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "mozzarella"
+        },
+        {
+          "name": "basil"
+        },
+        {
+          "name": "olive oil"
+        },
+        {
+          "name": "pizza dough"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Pepperoni Pizza",
+      "image": "https://images.pexels.com/photos/1596884/pexels-photo-1596884.jpeg",
+      "restaurantChain": "Fire and Ice Pizzeria",
+      "price": 550,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "pepperoni"
+        },
+        {
+          "name": "mozzarella"
+        },
+        {
+          "name": "tomato sauce"
+        },
+        {
+          "name": "oregano"
+        },
+        {
+          "name": "pizza dough"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Pasta Carbonara",
+      "image": "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg",
+      "restaurantChain": "Fire and Ice Pizzeria",
+      "price": 520,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "spaghetti"
+        },
+        {
+          "name": "bacon"
+        },
+        {
+          "name": "egg"
+        },
+        {
+          "name": "parmesan"
+        },
+        {
+          "name": "black pepper"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Four Cheese Pizza",
+      "image": "https://images.pexels.com/photos/1580466/pexels-photo-1580466.jpeg",
+      "restaurantChain": "Fire and Ice Pizzeria",
+      "price": 600,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "mozzarella"
+        },
+        {
+          "name": "parmesan"
+        },
+        {
+          "name": "gorgonzola"
+        },
+        {
+          "name": "ricotta"
+        },
+        {
+          "name": "pizza dough"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Tiramisu",
+      "image": "https://images.pexels.com/photos/3026806/pexels-photo-3026806.jpeg",
+      "restaurantChain": "Fire and Ice Pizzeria",
+      "price": 350,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "mascarpone"
+        },
+        {
+          "name": "coffee"
+        },
+        {
+          "name": "ladyfingers"
+        },
+        {
+          "name": "cocoa powder"
+        },
+        {
+          "name": "sugar"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Fettuccine Alfredo",
+      "image": "https://images.pexels.com/photos/1279331/pexels-photo-1279331.jpeg",
+      "restaurantChain": "Bagaichā",
+      "price": 550,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "fettuccine"
+        },
+        {
+          "name": "parmesan"
+        },
+        {
+          "name": "butter"
+        },
+        {
+          "name": "cream"
+        },
+        {
+          "name": "garlic"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Pesto Pasta",
+      "image": "https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg",
+      "restaurantChain": "Bagaichā",
+      "price": 500,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "basil"
+        },
+        {
+          "name": "olive oil"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "parmesan"
+        },
+        {
+          "name": "pasta"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Lasagna",
+      "image": "https://images.pexels.com/photos/14386752/pexels-photo-14386752.jpeg",
+      "restaurantChain": "Bagaichā",
+      "price": 600,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "lasagna sheets"
+        },
+        {
+          "name": "ground beef"
+        },
+        {
+          "name": "tomato sauce"
+        },
+        {
+          "name": "ricotta"
+        },
+        {
+          "name": "mozzarella"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Bruschetta",
+      "image": "https://images.pexels.com/photos/761356/pexels-photo-761356.jpeg",
+      "restaurantChain": "Bagaichā",
+      "price": 300,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "bread"
+        },
+        {
+          "name": "tomato"
+        },
+        {
+          "name": "basil"
+        },
+        {
+          "name": "garlic"
+        },
+        {
+          "name": "olive oil"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Gelato",
+      "image": "https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg",
+      "restaurantChain": "Bagaichā",
+      "price": 350,
+      "cuisine": "Italian",
+      "ingredients": [
+        {
+          "name": "milk"
+        },
+        {
+          "name": "sugar"
+        },
+        {
+          "name": "cream"
+        },
+        {
+          "name": "flavoring extract"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Kung Pao Chicken",
+      "image": "https://images.pexels.com/photos/7159978/pexels-photo-7159978.jpeg",
+      "restaurantChain": "Kathmandu China Town",
+      "price": 550,
+      "cuisine": "Chinese",
+      "ingredients": [
+        {
+          "name": "chicken"
+        },
+        {
+          "name": "peanuts"
+        },
+        {
+          "name": "soy sauce"
+        },
+        {
+          "name": "chili"
+        },
+        {
+          "name": "vegetables"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Sweet and Sour Pork",
+      "image": "https://images.pexels.com/photos/1717598/pexels-photo-1717598.jpeg",
+      "restaurantChain": "Kathmandu China Town",
+      "price": 600,
+      "cuisine": "Chinese",
+      "ingredients": [
+        {
+          "name": "pork"
+        },
+        {
+          "name": "vinegar"
+        },
+        {
+          "name": "pineapple"
+        },
+        {
+          "name": "bell pepper"
+        },
+        {
+          "name": "soy sauce"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Vegetable Chow Mein",
+      "image": "https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg",
+      "restaurantChain": "Kathmandu China Town",
+      "price": 450,
+      "cuisine": "Chinese",
+      "ingredients": [
+        {
+          "name": "noodles"
+        },
+        {
+          "name": "cabbage"
+        },
+        {
+          "name": "carrot"
+        },
+        {
+          "name": "soy sauce"
+        },
+        {
+          "name": "spring onion"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Dim Sum Platter",
+      "image": "https://images.pexels.com/photos/6287764/pexels-photo-6287764.jpeg",
+      "restaurantChain": "Kathmandu China Town",
+      "price": 500,
+      "cuisine": "Chinese",
+      "ingredients": [
+        {
+          "name": "dumpling dough"
+        },
+        {
+          "name": "vegetables"
+        },
+        {
+          "name": "pork/chicken"
+        },
+        {
+          "name": "soy sauce"
+        },
+        {
+          "name": "ginger"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Hot and Sour Soup",
+      "image": "https://images.pexels.com/photos/247466/pexels-photo-247466.jpeg",
+      "restaurantChain": "Kathmandu China Town",
+      "price": 350,
+      "cuisine": "Chinese",
+      "ingredients": [
+        {
+          "name": "tofu"
+        },
+        {
+          "name": "vinegar"
+        },
+        {
+          "name": "pepper"
+        },
+        {
+          "name": "vegetables"
+        },
+        {
+          "name": "soy sauce"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "El Rancho",
+      "category": "Mexican",
+      "location": "Dillibazar, Kathmandu",
+      "rating": 4.2,
+      "priceRange": "$",
+      "deliveryTime": "25-35 min",
+      "description": "Affordable Mexican fusion meals.",
+      "image": "mexican3.jpg",
+      "menus": [
+        "Taco Bowl",
+        "Burrito Wrap",
+        "Cheese Nachos"
+      ]
+    }
+  ],
+  "cart": [
+    {
+      "id": "2676",
+      "menuItemId": "6",
+      "quantity": 1
+    },
+    {
+      "id": "6b23",
+      "menuItemId": "1",
+      "quantity": 3
+    },
+    {
+      "id": "97e1",
+      "menuItemId": "2",
+      "quantity": 1
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "Fire and Ice Pizzeria",
+      "location": "Thamel, Kathmandu"
+    },
+    {
+      "id": "2",
+      "name": "Bagaichā",
+      "location": "Durbar Marg, Kathmandu"
+    },
+    {
+      "id": "3",
+      "name": "Kathmandu China Town",
+      "location": "New Baneshwor, Kathmandu"
+    }
+  ],
+  "users": [
+    {
+      "id": "883f",
+      "name": "sang",
+      "email": "yoru@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "c3f8",
+      "name": "sang",
+      "email": "sang@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "6348",
+      "name": "kri",
+      "email": "sanga@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "4340",
+      "name": "yo",
+      "email": "sangq@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "ca87",
+      "name": "test",
+      "email": "test@gamil.com",
+      "password": "password"
+    },
+    {
+      "name": "test1",
+      "email": "test1@gmail.com",
+      "password": "$2b$10$n27jZ80dVatj6cA5m0mE.OSL.38zQ8Nzxuw8KnX2l/KBlB4UA0jyW",
+      "id": "Od23AzH"
+    },
+    {
+      "name": "test col",
+      "email": "test@gmail.com",
+      "password": "$2b$10$wduiLXWiINgYGp22esqp.OkF/akBdlwbACirspiz3wAlv0Vo.xpxy",
+      "id": "oKwlFSi"
+    },
+    {
+      "name": "sa",
+      "email": "sa@gmail.com",
+      "password": "$2b$10$iy0zHRm1jBCW5R4dXJeZC.mBLop2ExZ/fZKg8ga.bBFOpKKp3bF/m",
+      "id": "wVb8kRv"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "a2c5",
+      "menuItemId": "1"
+    }
+  ]
+}
