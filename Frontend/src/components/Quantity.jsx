@@ -1,73 +1,39 @@
-import React, { useState, useEffect } from "react";
-import Button from "./Button.jsx";
-const Quantity = ({
-  initial = 1,
-  min = 1,
-  max = null,
-  onChange = () => {},
-  className = "",
-}) => {
-  const clamp = (v) => {
-    let n = Number.isFinite(Number(v)) ? Math.floor(Number(v)) : min;
-    if (max !== null && !Number.isNaN(max)) n = Math.min(n, max);
-    return Math.max(n, min);
-  };
+import React from "react";
+import { Minus, Plus } from "lucide-react";
 
-  const [quantity, setQuantity] = useState(() => clamp(initial));
-
-  useEffect(() => {
-    if (quantity !== "" && Number.isFinite(Number(quantity)))
-      onChange(Number(quantity));
-  }, [quantity, onChange]);
-
-  const increment = () => setQuantity((q) => clamp((q === "" ? min : q) + 1));
-  const decrement = () => setQuantity((q) => clamp((q === "" ? min : q) - 1));
-
-  const onQuantityChange = (e) => {
-    const val = e.target.value;
-    if (val === "") {
-      setQuantity("");
-      return;
-    }
-    // accept only digits and optionally clamp
-    const parsed = parseInt(val, 10);
-    if (!Number.isNaN(parsed)) {
-      setQuantity(clamp(parsed));
+const Quantity = ({ value, onChange, disabled = false }) => {
+  const handleDecrease = () => {
+    if (value > 1) {
+      onChange(value - 1);
     }
   };
 
-  const onBlur = () => {
-    if (quantity === "" || !Number.isFinite(Number(quantity)))
-      setQuantity(clamp(min));
+  const handleIncrease = () => {
+    onChange(value + 1);
   };
 
   return (
-    <div className={`inline-flex items-center space-x-2 ${className}`}>
-      <Button size="quantity" onClick={decrement} disabled={quantity <= min}>
-        -
-      </Button>
-
-      <input
-        type="number"
-        min={min}
-        max={max ?? 30}
-        value={quantity}
-        onChange={onQuantityChange}
-        onBlur={onBlur}
-        className="w-16 text-center p-1 border rounded"
-        aria-label="Quantity number"
-      />
-
-      <Button
-        size="quantity"
-        onClick={increment}
-        aria-label="Increase quantity"
-        disabled={max !== null && Number(quantity) >= max}
+    <div className={`flex items-center gap-3 bg-gray-50 rounded-lg border px-3 py-1 text-gray-700 `}>
+      <button
+        onClick={handleDecrease}
+        disabled={disabled || value <= 1}
+        className="p-1  hover:bg-white hover:shadow-sm  rounded-full transition  "
       >
-        +
-      </Button>
+        <Minus size={16} />
+      </button>
+      
+      <span className="w-6 text-center  font-bold ">{value}</span>
+      
+      <button
+        onClick={handleIncrease}
+        disabled={disabled}
+        className="p-1 hover:bg-white hover:shadow-sm rounded-full transition  "
+      >
+        <Plus size={16} />
+      </button>
     </div>
   );
 };
 
 export default Quantity;
+

@@ -46,14 +46,13 @@ export async function FetchCart() {
 
   const enriched = cart.map((row) => ({
     ...row,
-    menuItem: menuItems.find((m) => m.id === row.menuItemId) || null,
+    menuItem: menuItems.find((m) => Number(m.id) === Number(row.menuItemId)) || null,
   }));
 
   return enriched;
 }
 
 export async function AddToCart(menuItemId, quantity = 1) {
-  // Check if this item is already in cart
   const existingRes = await fetch(
     `${JSON_SERVER_BASE}/cart?menuItemId=${menuItemId}`
   );

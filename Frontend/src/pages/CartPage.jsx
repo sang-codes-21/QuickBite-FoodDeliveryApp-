@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Tag from "../components/TextFormat.jsx";
+import { useNavigate } from "react-router-dom";
 import TopPart from "../components/TopPart.jsx";
+import Quantity from "../components/Quantity.jsx";
+import OrderModal from "../components/OrderModal.jsx";
 import {
   FetchCart,
   UpdateCartItemQuantity,
@@ -8,9 +10,11 @@ import {
 } from "../ServerAPI.js";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadCart() {
@@ -22,14 +26,13 @@ const CartPage = () => {
     loadCart();
   }, []);
 
-  const handleQuantityChange = async (item, delta) => {
-    const nextQty = Math.max(1, item.quantity + delta);
+  const handleQuantityChange = async (item, newQuantity) => {
     setCartItems((prev) =>
-      prev.map((c) => (c.id === item.id ? { ...c, quantity: nextQty } : c))
+      prev.map((c) => (c.id === item.id ? { ...c, quantity: newQuantity } : c))
     );
     setUpdatingId(item.id);
     try {
-      await UpdateCartItemQuantity(item.id, nextQty);
+      await UpdateCartItemQuantity(item.id, newQuantity);
     } finally {
       setUpdatingId(null);
     }
@@ -57,136 +60,103 @@ const CartPage = () => {
     );
   }, [cartItems]);
 
+  const handleOrderSubmit = (orderData) => {
+    console.log("Order submitted:", orderData);
+    
+    // Navigate to order confirmation page with order details
+    navigate("/order", {
+      state: {
+        orderData: {
+          customerInfo: orderData,
+          items: cartItems,
+          totals: totals
+        }
+      }
+    });
+    
+    
+    setCartItems([]);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <TopPart />
-      <main className="px-4 md:px-8 mt-6 md:mt-10">
-        <div className="max-w-4xl mx-auto">
-          <Tag
-            as="h1"
-            className="text-xl md:text-2xl font-semibold text-gray-900 mb-4"
-          >
-            Your Cart
-          </Tag>
+      <main className="px-4 py-6 max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
 
-          {loading ? (
-            <p className="text-gray-500">Loading your cart...</p>
-          ) : cartItems.length === 0 ? (
-            <div className="bg-white/95 rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center justify-center text-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-2xl">
-                🛒
-              </div>
-              <Tag as="h2" className="text-lg font-semibold text-gray-900 mt-1">
-                Your cart is empty
-              </Tag>
-              <p className="text-sm text-gray-500 max-w-sm">
-                Looks like you haven&apos;t added anything yet. Browse the menu
-                and add your favorite dishes to get started.
-              </p>
-            </div>
-          ) : (
-            <div className="bg-white/95 rounded-2xl border border-gray-100 shadow-sm p-4 md:p-5 flex flex-col gap-4">
-              {cartItems.map((item) => {
-                const product = item.menuItem || {};
-                const price = product.price ?? 0;
-                const lineTotal = (price * item.quantity).toFixed(2);
-                return (
-                  <div
-                    key={item.id}
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b border-gray-100 pb-4 last:border-b-0"
-                  >
-                    <div className="flex items-center gap-4 flex-1">
-                      <div className="flex-shrink-0">
-                        <img
-                          src={
-                            product.image || "https://via.placeholder.com/84"
-                          }
-                          alt={product.title}
-                          className="h-20 w-20 md:h-24 md:w-24 rounded-xl object-cover shadow-sm"
-                        />
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <Tag
-                          as="h2"
-                          className="font-semibold text-gray-900 line-clamp-2"
-                        >
-                          {product.title || "Item"}
-                        </Tag>
-                        <Tag
-                          as="p"
-                          size="xs"
-                          className="text-gray-600 mt-1 line-clamp-1"
-                        >
-                          {product.restaurantChain || "Quickbite"}
-                        </Tag>
-                        <Tag
-                          as="p"
-                          size="sm"
-                          className="text-gray-900 font-semibold mt-1"
-                        >
-                          ${price.toFixed(2)}
-                        </Tag>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col items-end gap-3 w-full sm:w-auto">
-                      <div className="flex items-center self-start sm:self-auto space-x-2 bg-gray-50 rounded-full px-2 py-1">
-                        <button
-                          aria-label="Decrease quantity"
-                          onClick={() => handleQuantityChange(item, -1)}
-                          disabled={updatingId === item.id}
-                          className="h-8 w-8 flex items-center justify-center bg-white rounded-full border border-gray-200 hover:bg-gray-100 disabled:opacity-50 transition"
-                        >
-                          −
-                        </button>
-                        <div className="w-8 text-center text-sm font-medium">
-                          {item.quantity}
-                        </div>
-                        <button
-                          aria-label="Increase quantity"
-                          onClick={() => handleQuantityChange(item, 1)}
-                          disabled={updatingId === item.id}
-                          className="h-8 w-8 flex items-center justify-center bg-white rounded-full border border-gray-200 hover:bg-gray-100 disabled:opacity-50 transition"
-                        >
-                          +
-                        </button>
-                      </div>
-
-                      <div className="flex items-center justify-between w-full gap-3">
-                        <span className="text-sm text-gray-500">
-                          Line total
-                        </span>
-                        <span className="text-base font-semibold text-gray-900">
-                          ${lineTotal}
-                        </span>
-                      </div>
-
-                      <button
-                        onClick={() => handleRemove(item)}
-                        disabled={updatingId === item.id}
-                        className="text-xs md:text-sm px-3 py-1.5 rounded-full bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 disabled:opacity-50 transition self-start sm:self-auto"
-                      >
-                        Remove
-                      </button>
-                    </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : cartItems.length === 0 ? (
+          <div className="bg-white border rounded-lg p-8 text-center">
+            <p className="text-4xl mb-4">🛒</p>
+            <h2 className="text-lg font-semibold mb-2">Your cart is empty</h2>
+            <p className="text-gray-600">Add items to get started</p>
+          </div>
+        ) : (
+          <div className="bg-white border rounded-lg p-4">
+            {cartItems.map((item) => {
+              const product = item.menuItem || {};
+              const price = product.price ?? 0;
+              const lineTotal = (price * item.quantity).toFixed(2);
+              
+              return (
+                <div key={item.id} className="flex gap-4 border-b py-4 last:border-b-0">
+                  <img
+                    src={product.image || "https://via.placeholder.com/80"}
+                    alt={product.title}
+                    className="h-20 w-20 rounded object-cover"
+                  />
+                  
+                  <div className="flex-1">
+                    <h2 className="font-semibold">{product.title || "Item"}</h2>
+                    <p className="text-sm text-gray-600">{product.restaurantChain || "Quickbite"}</p>
+                    <p className="font-semibold mt-1">${price.toFixed(2)}</p>
                   </div>
-                );
-              })}
 
-              <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                <span className="text-sm text-gray-500">
-                  Subtotal ({totals.items} item
-                  {totals.items !== 1 ? "s" : ""})
-                </span>
-                <span className="text-base md:text-lg font-semibold text-gray-900">
-                  ${totals.subtotal.toFixed(2)}
-                </span>
-              </div>
+                  <div className="flex flex-col items-end gap-2">
+                    <Quantity
+                      value={item.quantity}
+                      onChange={(newQty) => handleQuantityChange(item, newQty)}
+                      disabled={updatingId === item.id}
+                    />
+                    
+                    <p className="font-semibold">${lineTotal}</p>
+                    
+                    <button
+                      onClick={() => handleRemove(item)}
+                      disabled={updatingId === item.id}
+                      className="text-sm text-red-600 hover:underline disabled:opacity-50"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="flex justify-between pt-4 border-t mt-4">
+              <span className="font-semibold">
+                Subtotal ({totals.items} item{totals.items !== 1 ? "s" : ""})
+              </span>
+              <span className="text-lg font-bold">${totals.subtotal.toFixed(2)}</span>
             </div>
-          )}
-        </div>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full mt-4 bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        )}
       </main>
+
+      <OrderModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleOrderSubmit}
+      />
     </>
   );
 };

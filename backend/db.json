@@ -391,19 +391,14 @@
   ],
   "cart": [
     {
-      "id": "2676",
-      "menuItemId": "6",
-      "quantity": 1
+      "menuItemId": 3,
+      "quantity": 1,
+      "id": 1
     },
     {
-      "id": "6b23",
       "menuItemId": "1",
-      "quantity": 3
-    },
-    {
-      "id": "97e1",
-      "menuItemId": "2",
-      "quantity": 1
+      "quantity": 3,
+      "id": 2
     }
   ],
   "restaurants": [
@@ -425,58 +420,17 @@
   ],
   "users": [
     {
-      "id": "883f",
-      "name": "sang",
-      "email": "yoru@gmail.com",
-      "password": "1234"
+      "name": "sasa",
+      "email": "asass@gmail.com",
+      "password": "1234",
+      "id": 1
     },
     {
-      "id": "c3f8",
-      "name": "sang",
-      "email": "sang@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "6348",
-      "name": "kri",
-      "email": "sanga@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "4340",
-      "name": "yo",
-      "email": "sangq@gmail.com",
-      "password": "password"
-    },
-    {
-      "id": "ca87",
-      "name": "test",
-      "email": "test@gamil.com",
-      "password": "password"
-    },
-    {
-      "name": "test1",
-      "email": "test1@gmail.com",
-      "password": "$2b$10$n27jZ80dVatj6cA5m0mE.OSL.38zQ8Nzxuw8KnX2l/KBlB4UA0jyW",
-      "id": "Od23AzH"
-    },
-    {
-      "name": "test col",
-      "email": "test@gmail.com",
-      "password": "$2b$10$wduiLXWiINgYGp22esqp.OkF/akBdlwbACirspiz3wAlv0Vo.xpxy",
-      "id": "oKwlFSi"
-    },
-    {
-      "name": "sa",
-      "email": "sa@gmail.com",
-      "password": "$2b$10$iy0zHRm1jBCW5R4dXJeZC.mBLop2ExZ/fZKg8ga.bBFOpKKp3bF/m",
-      "id": "wVb8kRv"
+      "name": "dsc",
+      "email": "a@gmail.com",
+      "password": "sc",
+      "id": 2
     }
   ],
-  "favorites": [
-    {
-      "id": "a2c5",
-      "menuItemId": "1"
-    }
-  ]
+  "favorites": []
 }

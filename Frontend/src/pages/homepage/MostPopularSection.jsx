@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AddToCart, AddToFav } from "../../ServerAPI.js";
+import { AddToFav } from "../../ServerAPI.js";
 import TextFormat from "../../components/TextFormat.jsx";
 import toast from "react-hot-toast";
+import AddToCart from "../../components/AddToCart.jsx";
 const MostPopularSection = ({ foods, selectedCuisine, setCartCount }) => {
   const navigate = useNavigate();
-  const [addingToCartId, setAddingToCartId] = useState(null);
   const [addingToFavId, setAddingToFavId] = useState(null);
 
   if (!foods || foods.length === 0) {
@@ -51,26 +51,15 @@ const MostPopularSection = ({ foods, selectedCuisine, setCartCount }) => {
               <div className="flex justify-between items-center mt-4">
                 <p className="text-lg font-bold text-gray-900">${item.price}</p>
                 {/* Add to Cart Button */}
-                <button
-                  onClick={async (event) => {
-                    event.stopPropagation();
-                    if (addingToCartId) return;
-                    setAddingToCartId(item.id);
-                    try {
-                      await AddToCart(item.id, 1);
-                      toast.success("Added to cart!");
-                      setCartCount((prev) => prev + 1);
-                    } catch (err) {
-                      toast.error("Failed to add item!");
-                    } finally {
-                      setAddingToCartId(null);
-                    }
-                  }}
-                  disabled={addingToCartId === item.id}
+                <AddToCart
+                  productId={item.id}
+                  productName={item.title}
+                  quantity={1}
+                  onSuccess={() => setCartCount((prev) => prev + 1)}
                   className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-4 py-1.5 rounded-full text-xs font-semibold hover:from-red-600 hover:to-rose-600 shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed transition"
                 >
                   Add
-                </button>
+                </AddToCart>
 
                 {/* Add to Favorites Button */}
                 <button

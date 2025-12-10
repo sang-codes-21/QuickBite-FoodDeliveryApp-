@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import logo from "../assets/quickbite.png";
 import TextFormat from "./TextFormat.jsx";
 import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import Login from "../pages/LoginPage.jsx";
 
-const Header = ({ cartCount, setShowLogin }) => {
+const Header = ({ cartCount}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
   React.useEffect(() => {
     const raw = window.localStorage.getItem("quickbite_user");
@@ -20,10 +22,16 @@ const Header = ({ cartCount, setShowLogin }) => {
     }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("quickbite_user");
+    setCurrentUser(null);
+    setShowProfileDropdown(false);
+  };
+
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm md:px-10">
-        <div className="p-3 md:px-6 lg:px-10">
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm md:px-10 ">
+        <div className="py-3 md:px-6 lg:px-10">
           <div className="flex justify-between items-center">
             <Link to="/" className="flex gap-3 items-center">
               <img
@@ -61,7 +69,7 @@ const Header = ({ cartCount, setShowLogin }) => {
                   </span>
                 )}
               </Link>
-              <Link to="/cart">
+              <Link to="/order">
                 <TextFormat
                   as="span"
                   size="xs"
@@ -81,66 +89,60 @@ const Header = ({ cartCount, setShowLogin }) => {
                 </TextFormat>
               </Link>
 
-              <button
-                onClick={() => setIsLoginOpen(true)}
-                className="flex items-center gap-2 mr-2 px-3 py-1 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 transition"
-              >
-                <img
-                  src={logo}
-                  alt="Profile"
-                  className="h-9 w-9 rounded-full object-cover shadow-sm"
-                />
-                <TextFormat
-                  as="span"
-                  size="xs"
-                  className="inline-block text-gray-700"
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    if (currentUser) {
+                      setShowProfileDropdown(!showProfileDropdown);
+                    } else {
+                      setIsLoginOpen(true);
+                    }
+                  }}
+                  className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 transition"
                 >
-                  {currentUser?.name || currentUser?.email || "Guest"}
-                </TextFormat>
-              </button>
+                  <img
+                    src={logo}
+                    alt="Profile"
+                    className="h-9 w-9 rounded-full object-cover shadow-sm"
+                  />
+                  <TextFormat
+                    as="span"
+                    size="xs"
+                    className="inline-block text-gray-700"
+                  >
+                    {currentUser?.name || currentUser?.email || "Guest"}
+                  </TextFormat>
+                </button>
+
+                {showProfileDropdown && currentUser && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <p className="text-sm font-semibold text-gray-800">{currentUser.name}</p>
+                      <p className="text-xs text-gray-600">{currentUser.email}</p>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Hamburger Button - Only on mobile */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-100 transition"
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {isMenuOpen && (
-            <div className="md:hidden mt-3 pb-3 space-y-3 bg-white/95 rounded-2xl shadow-lg border border-gray-100 px-3">
-              <Link to="/" onClick={() => setIsMenuOpen(false)}>
+            <div className="md:hidden mt-3   bg-white shadow-lg border border-gray-100 px-3">
+              <Link to="/">
                 <TextFormat
                   as="p"
                   size="sm"
@@ -150,7 +152,8 @@ const Header = ({ cartCount, setShowLogin }) => {
                 </TextFormat>
               </Link>
 
-              <Link to="/cart" onClick={() => setIsMenuOpen(false)}>
+
+              <Link to="/cart">
                 <TextFormat
                   as="p"
                   size="sm"
@@ -160,6 +163,15 @@ const Header = ({ cartCount, setShowLogin }) => {
                 </TextFormat>
               </Link>
 
+              <Link to="/order">
+                <TextFormat
+                  as="p"
+                  size="sm"
+                  className="py-2 border-b border-gray-100 text-gray-700 hover:text-red-500 transition block"
+                >
+                  Order
+                </TextFormat>
+              </Link>
               <button
                 onClick={() => {
                   setIsMenuOpen(false);

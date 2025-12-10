@@ -11,7 +11,7 @@ const TopPart = () => {
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-md h-16 flex items-center px-3 md:px-4 justify-between border-b border-gray-100 shadow-sm">
+    <div className="sticky top-0 bg-white/90 backdrop-blur-md z-30 h-16 flex items-center px-3 md:px-4 justify-between border-b border-gray-100 shadow-sm">
       <button
         onClick={handleBack}
         aria-label="Go back"

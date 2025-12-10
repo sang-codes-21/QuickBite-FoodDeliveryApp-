@@ -6,6 +6,7 @@ import Profile from "./pages/Profile.jsx";
 import FavouritePage from "./pages/FavouritePage.jsx";
 import ProductDetails from "./components/ProductDetails.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import OrderPage from "./pages/OrderPage.jsx";
 import SignUp from "./pages/SignUp.jsx";
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage />,
+  },
+  {
+    path:"/order",
+    element:<OrderPage/>
   },
   {
     path: "/favourite",

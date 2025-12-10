@@ -29,7 +29,6 @@ const ApiDisplay = ({ setCartCount }) => {
     }
   }, []);
 
-  // Load default cuisine on mount
   useEffect(() => {
     handleClick("All");
   }, [handleClick]);
