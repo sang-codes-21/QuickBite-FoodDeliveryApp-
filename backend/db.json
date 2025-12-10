@@ -391,14 +391,9 @@
   ],
   "cart": [
     {
-      "menuItemId": 3,
-      "quantity": 1,
-      "id": 1
-    },
-    {
       "menuItemId": "1",
-      "quantity": 3,
-      "id": 2
+      "quantity": 6,
+      "id": 1
     }
   ],
   "restaurants": [
@@ -430,6 +425,12 @@
       "email": "a@gmail.com",
       "password": "sc",
       "id": 2
+    },
+    {
+      "name": "sang",
+      "email": "aaa@gmail.com",
+      "password": "1234",
+      "id": 3
     }
   ],
   "favorites": []

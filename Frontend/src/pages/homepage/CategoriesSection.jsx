@@ -4,7 +4,7 @@ import TextFormat from "../../components/TextFormat.jsx";
 const CategoriesSection = ({ categories, selectedCuisine, onSelect }) => {
   return (
     <div className="mt-10 pb-4">
-      {/* Header */}
+    
       <div className="flex items-center justify-between gap-2 mb-3">
         <TextFormat
           as="h1"
@@ -17,8 +17,7 @@ const CategoriesSection = ({ categories, selectedCuisine, onSelect }) => {
         </p>
       </div>
 
-      {/* Scrollable list */}
-      <div className="w-full h-[170px] gap-4 flex overflow-x-auto no-scrollbar bg-white/80 rounded-2xl border border-gray-100 shadow-sm px-3 py-3 backdrop-blur">
+      <div className="w-full h-[170px] gap-4 flex justify-center overflow-x-auto no-scrollbar bg-white/80 rounded-2xl border border-gray-100 shadow-sm px-3 py-3 backdrop-blur">
         {categories.map((category) => (
           <button
             key={category.name}

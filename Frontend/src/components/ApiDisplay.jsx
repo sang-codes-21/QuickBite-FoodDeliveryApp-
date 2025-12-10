@@ -8,7 +8,8 @@ import country from "../data/cuisines.js";
 import delivery from "../assets/delivery.gif";
 import CategoriesSection from "../pages/homepage/CategoriesSection.jsx";
 import MostPopularSection from "../pages/homepage/MostPopularSection.jsx";
-const ApiDisplay = ({ setCartCount }) => {
+
+const ApiDisplay = ({ setCartCount, searchQuery }) => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
@@ -33,6 +34,17 @@ const ApiDisplay = ({ setCartCount }) => {
     handleClick("All");
   }, [handleClick]);
 
+  let filteredFoods = foods;
+  
+  if (searchQuery) {
+    filteredFoods = foods.filter(food => {
+      const title = food.title?.toLowerCase() || "";
+      const search = searchQuery.toLowerCase();
+      
+      return title.includes(search);
+    });
+  }
+
   return (
     <div className="mt-10 pb-24">
       <CategoriesSection
@@ -43,7 +55,7 @@ const ApiDisplay = ({ setCartCount }) => {
 
       <RestaurantCategories />
 
-      {/* Loading State */}
+   
       {loading && (
         <div className="text-center mt-8">
           <p className="text-gray-500">
@@ -57,8 +69,8 @@ const ApiDisplay = ({ setCartCount }) => {
 
       {!loading && (
         <MostPopularSection
-          foods={foods}
-          selectedCuisine={selectedCuisine}
+          foods={filteredFoods}
+          selectedCuisine={searchQuery ? `Search: "${searchQuery}"` : selectedCuisine}
           setCartCount={setCartCount}
         />
       )}

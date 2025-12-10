@@ -61,22 +61,27 @@ const CartPage = () => {
   }, [cartItems]);
 
   const handleOrderSubmit = (orderData) => {
-    console.log("Order submitted:", orderData);
+    // Create new order
+    const newOrder = {
+      id: Date.now(),
+      date: new Date().toLocaleDateString(),
+      customerInfo: orderData,
+      items: cartItems,
+      totals: totals
+    };
     
-    // Navigate to order confirmation page with order details
-    navigate("/order", {
-      state: {
-        orderData: {
-          customerInfo: orderData,
-          items: cartItems,
-          totals: totals
-        }
-      }
-    });
+    // Save to localStorage first
+    const existingOrders = localStorage.getItem('orderHistory');
+    const orderHistory = existingOrders ? JSON.parse(existingOrders) : [];
+    localStorage.setItem('orderHistory', JSON.stringify([newOrder, ...orderHistory]));
     
+    // Mark as new order for toast
+    localStorage.setItem('newOrderPlaced', 'true');
     
+    // Clear cart and navigate
     setCartItems([]);
     setIsModalOpen(false);
+    navigate("/order");
   };
 
   return (

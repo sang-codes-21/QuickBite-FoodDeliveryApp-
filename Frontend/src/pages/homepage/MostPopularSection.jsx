@@ -8,6 +8,8 @@ const MostPopularSection = ({ foods, selectedCuisine, setCartCount }) => {
   const navigate = useNavigate();
   const [addingToFavId, setAddingToFavId] = useState(null);
 
+  const isSearching = selectedCuisine.startsWith("Search:");
+
   if (!foods || foods.length === 0) {
     return (
       <p className="text-gray-500 text-center mt-8">
@@ -17,15 +19,25 @@ const MostPopularSection = ({ foods, selectedCuisine, setCartCount }) => {
   }
   return (
     <div>
-      <TextFormat
-        as="h1"
-        className="mt-10 text-lg md:text-xl text-gray-900 font-semibold"
-      >
-        {selectedCuisine === "All"
-          ? "Most Popular Dishes"
-          : `Most Popular ${selectedCuisine}`}
-      </TextFormat>
-
+      <div className="mt-10 flex items-center justify-between">
+        <TextFormat
+          as="h1"
+          className="text-lg md:text-xl text-gray-900 font-semibold"
+        >
+          {selectedCuisine === "All"
+            ? "Most Popular Dishes"
+            : `Most Popular ${selectedCuisine}`}
+        </TextFormat>
+        
+        {isSearching && (
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition"
+          >
+            <span className="text-xl">×</span>
+          </button>
+        )}
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5 px-1 md:px-2">
         {foods.map((item) => (
           <div

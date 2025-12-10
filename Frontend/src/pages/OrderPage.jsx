@@ -11,10 +11,12 @@ const OrderPage = () => {
     if (savedOrders) {
       setOrders(JSON.parse(savedOrders));
       
-      // Show success toast for the most recent order
-      if (!toastShown.current) {
+      const isNewOrder = localStorage.getItem('newOrderPlaced');
+      if (isNewOrder && !toastShown.current) {
         toast.success("Order Confirmed!");
         toastShown.current = true;
+      
+        localStorage.removeItem('newOrderPlaced');
       }
     }
   }, []);

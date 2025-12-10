@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "../../assets/curry.png";
 
-const Banner = () => {
+const Banner = ({ onSearch }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      onSearch(searchQuery);
+      // Scroll to results
+      window.scrollTo({ top: 800, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative mt-20 px-6 md:px-16 lg:px-24 min-h-[70vh] md:min-h-[80vh] flex items-center w-full overflow-hidden">
       <img
@@ -22,10 +33,12 @@ const Banner = () => {
         </p>
 
         <div className="mt-2">
-          <form className="flex flex-col sm:flex-row  gap-3 bg-white/90 rounded-2xl sm:rounded-full shadow-xl p-2 sm:p-2.5 backdrop-blur-md">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row  gap-3 bg-white/90 rounded-2xl sm:rounded-full shadow-xl p-2 sm:p-2.5 backdrop-blur-md">
             <input
               type="search"
-              placeholder="Search for dishes, restaurants..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for dishes..."
               className="flex-1 px-4  rounded-xl sm:rounded-full focus:outline-none text-gray-800 placeholder:text-gray-400 bg-transparent"
             />
             <button
