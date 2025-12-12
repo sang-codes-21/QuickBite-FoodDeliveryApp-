@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Login from "../pages/LoginPage.jsx";
 
-const Header = ({ cartCount}) => {
+const Header = ({ cartCount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,7 +30,7 @@ const Header = ({ cartCount}) => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm md:px-10 ">
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-red-100 shadow-sm md:px-10 ">
         <div className="py-3 md:px-6 lg:px-10">
           <div className="flex justify-between items-center">
             <Link to="/" className="flex gap-3 items-center">
@@ -117,8 +117,12 @@ const Header = ({ cartCount}) => {
                 {showProfileDropdown && currentUser && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
                     <div className="px-4 py-2 border-b border-gray-100">
-                      <p className="text-sm font-semibold text-gray-800">{currentUser.name}</p>
-                      <p className="text-xs text-gray-600">{currentUser.email}</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {currentUser.name}
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        {currentUser.email}
+                      </p>
                     </div>
                     <button
                       onClick={handleLogout}
@@ -151,7 +155,6 @@ const Header = ({ cartCount}) => {
                   Home
                 </TextFormat>
               </Link>
-
 
               <Link to="/cart">
                 <TextFormat

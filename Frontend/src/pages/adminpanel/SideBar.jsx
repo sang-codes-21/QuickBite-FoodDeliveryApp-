@@ -1,12 +1,11 @@
-import { Menu, X, Home, Briefcase, Mail, Settings } from "lucide-react";
+import { Menu, X, LayoutDashboard, TrendingUp, ShoppingCart } from "lucide-react";
 import Logo from "../../assets/quickbite.png";
 
 function SideBar({ isOpen, setIsOpen }) {
   const navItems = [
-    { icon: Home, label: "Home", href: "#" },
-    { icon: Briefcase, label: "Portfolio", href: "#" },
-    { icon: Mail, label: "Contact", href: "#" },
-    { icon: Settings, label: "Projects", href: "#" },
+    { icon: LayoutDashboard, label: "Dashboard", href: "#dashboard" },
+    { icon: TrendingUp, label: "Stats", href: "#stats" },
+    { icon: ShoppingCart, label: "Recent Orders", href: "#orders" },
   ];
 
   return (
@@ -14,7 +13,7 @@ function SideBar({ isOpen, setIsOpen }) {
       className={`${
         isOpen ? "w-64" : "w-20"
       } bg-gradient-to-b from-[#c44569] via-[#7b2d42] to-[#5a1f31] text-white 
-      transition-all duration-300 flex flex-col fixed h-screen left-0 top-0 z-50
+      transition-all duration-300 flex flex-col fixed h-full left-0 top-0 z-50
       shadow-[4px_0_24px_rgba(196,69,105,0.3)]`}
     >
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-gradient-to-br from-white/10 to-transparent" />

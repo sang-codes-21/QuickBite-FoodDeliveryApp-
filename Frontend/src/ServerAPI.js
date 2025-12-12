@@ -16,8 +16,7 @@ export const FetchAllCuisines = async (cuisine) => {
   const data = await response.json();
   return data || [];
 };
-
-export async function FetchSingleFood(id) {
+export const FetchSingleFood = async (id) => {
   const res = await fetch(`${JSON_SERVER_BASE}/menuItems/${id}`);
   if (!res.ok) {
     console.error("failed to fetch single food item from json server");
@@ -25,7 +24,8 @@ export async function FetchSingleFood(id) {
   }
   const data = await res.json();
   return data;
-}
+};
+
 
 export async function FetchCart() {
   // Fetch cart rows

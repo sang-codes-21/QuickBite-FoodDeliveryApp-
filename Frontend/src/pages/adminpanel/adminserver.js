@@ -125,6 +125,7 @@ export const getRecentOrders = async () => {
 export const getTodayActivity = async () => {
   try {
     const cartItems = await getCartItems();
+    const users = await getUsers();
     
     // Simulate completed and pending orders
     const completed = cartItems.filter((_, i) => i % 2 === 0).length;
@@ -132,7 +133,8 @@ export const getTodayActivity = async () => {
 
     return {
       ordersCompleted: completed,
-      ordersPending: pending
+      ordersPending: pending,
+      newCustomers: users.length
     };
   } catch (error) {
     console.error('Error fetching today activity:', error);

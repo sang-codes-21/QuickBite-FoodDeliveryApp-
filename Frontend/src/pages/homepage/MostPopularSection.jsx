@@ -26,12 +26,12 @@ const MostPopularSection = ({ foods, selectedCuisine, setCartCount }) => {
         >
           {selectedCuisine === "All"
             ? "Most Popular Dishes"
-            : `Most Popular ${selectedCuisine}`}
+            : `Searched Item ${selectedCuisine}`}
         </TextFormat>
         
         {isSearching && (
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
             className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition"
           >
             <span className="text-xl">×</span>

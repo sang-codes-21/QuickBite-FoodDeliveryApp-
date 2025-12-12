@@ -25,7 +25,7 @@ const CategoriesSection = ({ categories, selectedCuisine, onSelect }) => {
             className={`flex flex-col items-center px-3 py-2 transition duration-300 shrink-0 rounded-2xl ${
               selectedCuisine === category.name
                 ? "bg-red-50 border border-red-200 shadow-md"
-                : "bg-white/90 border border-gray-100 shadow-sm hover:border-red-200 hover:shadow-md"
+                : "bg-white/90 border border-gray-100 shadow-sm hover:border-red-200  hover:text-red-500 hover:shadow-md"
             }`}
           >
             <img
@@ -39,7 +39,7 @@ const CategoriesSection = ({ categories, selectedCuisine, onSelect }) => {
               className={`mt-0 ${
                 selectedCuisine === category.name
                   ? "text-red-500 font-semibold"
-                  : "text-gray-700"
+                  : " "
               }`}
             >
               {category.name}

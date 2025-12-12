@@ -47,6 +47,14 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
 
   return (
     <div className="mt-10 pb-24">
+      {searchQuery && !loading && (
+        <MostPopularSection
+          foods={filteredFoods}
+          selectedCuisine={`Search: "${searchQuery}"`}
+          setCartCount={setCartCount}
+        />
+      )}
+
       <CategoriesSection
         categories={country}
         selectedCuisine={selectedCuisine}
@@ -67,10 +75,10 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
         </div>
       )}
 
-      {!loading && (
+      {!searchQuery && !loading && (
         <MostPopularSection
           foods={filteredFoods}
-          selectedCuisine={searchQuery ? `Search: "${searchQuery}"` : selectedCuisine}
+          selectedCuisine={selectedCuisine}
           setCartCount={setCartCount}
         />
       )}

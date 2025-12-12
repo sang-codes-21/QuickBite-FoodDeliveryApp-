@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FetchSingleFood } from "../ServerAPI.js";
 import TopPart from "./TopPart.jsx";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Quantity from "./Quantity.jsx";
 import AddToCart from "./AddToCart.jsx";
 
