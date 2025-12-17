@@ -7,35 +7,42 @@ import TodaysActivity from "./TodaysActivity";
 
 const Admin = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Responsive sidebar: close on mobile, open on desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setIsOpen(false);  
+        setIsOpen(false);
       } else {
-        setIsOpen(true);   
+        setIsOpen(true);
       }
     };
 
-    handleResize();  // Check on mount
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
-      
-      <div className={`transition-all duration-300 ${isOpen ? "ml-64" : "ml-20"} p-4 md:p-6`}>
+
+      <div
+        className={`transition-all duration-300 ${
+          isOpen ? "ml-64" : "ml-20"
+        } p-4 md:p-6`}
+      >
         <div className="mb-4 md:mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-          <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">Welcome back!</p>
-          
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            Dashboard
+          </h1>
+          <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
+            Welcome back!
+          </p>
+
           <div className="relative max-w-xl flex">
             <div className="bg-[#c44569]  px-4 rounded-l-xl shadow-md flex items-center justify-center">
-              <Search className="text-white" size={20}  />
+              <Search className="text-white" size={20} />
             </div>
             <input
               type="text"

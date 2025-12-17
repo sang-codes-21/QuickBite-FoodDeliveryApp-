@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Login from "../pages/LoginPage.jsx";
 
-const Header = ({ cartCount }) => {
+const Header = ({ cartCount, favCount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -79,7 +79,7 @@ const Header = ({ cartCount }) => {
                 </TextFormat>
               </Link>
 
-              <Link to="/favourite">
+              <Link to="/favourite" className="relative">
                 <TextFormat
                   as="span"
                   size="xs"
@@ -87,6 +87,11 @@ const Header = ({ cartCount }) => {
                 >
                   Favourites
                 </TextFormat>
+                {favCount > 0 && (
+                  <span className="absolute  -right-1 w-2 h-1 rounded-full animate-bounce">
+                    ❤️
+                  </span>
+                )}
               </Link>
 
               <div className="relative">

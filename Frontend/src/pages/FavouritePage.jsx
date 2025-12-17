@@ -10,6 +10,7 @@ const FavouritePage = () => {
 
   useEffect(() => {
     async function loadFavorites() {
+      localStorage.removeItem("quickbite_unseen_favs");
       setLoading(true);
       const data = await FetchFavorites();
       setFavItems(data);

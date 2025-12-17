@@ -61,24 +61,23 @@ const CartPage = () => {
   }, [cartItems]);
 
   const handleOrderSubmit = (orderData) => {
-    // Create new order
     const newOrder = {
       id: Date.now(),
       date: new Date().toLocaleDateString(),
       customerInfo: orderData,
       items: cartItems,
-      totals: totals
+      totals: totals,
     };
-    
-    // Save to localStorage first
-    const existingOrders = localStorage.getItem('orderHistory');
+
+    const existingOrders = localStorage.getItem("orderHistory");
     const orderHistory = existingOrders ? JSON.parse(existingOrders) : [];
-    localStorage.setItem('orderHistory', JSON.stringify([newOrder, ...orderHistory]));
-    
-    // Mark as new order for toast
-    localStorage.setItem('newOrderPlaced', 'true');
-    
-    // Clear cart and navigate
+    localStorage.setItem(
+      "orderHistory",
+      JSON.stringify([newOrder, ...orderHistory])
+    );
+
+    localStorage.setItem("newOrderPlaced", "true");
+
     setCartItems([]);
     setIsModalOpen(false);
     navigate("/order");
@@ -104,18 +103,23 @@ const CartPage = () => {
               const product = item.menuItem || {};
               const price = product.price ?? 0;
               const lineTotal = (price * item.quantity).toFixed(2);
-              
+
               return (
-                <div key={item.id} className="flex gap-4 border-b py-4 last:border-b-0">
+                <div
+                  key={item.id}
+                  className="flex gap-4 border-b py-4 last:border-b-0"
+                >
                   <img
                     src={product.image || "https://via.placeholder.com/80"}
                     alt={product.title}
                     className="h-20 w-20 rounded object-cover"
                   />
-                  
+
                   <div className="flex-1">
                     <h2 className="font-semibold">{product.title || "Item"}</h2>
-                    <p className="text-sm text-gray-600">{product.restaurantChain || "Quickbite"}</p>
+                    <p className="text-sm text-gray-600">
+                      {product.restaurantChain || "Quickbite"}
+                    </p>
                     <p className="font-semibold mt-1">${price.toFixed(2)}</p>
                   </div>
 
@@ -125,9 +129,9 @@ const CartPage = () => {
                       onChange={(newQty) => handleQuantityChange(item, newQty)}
                       disabled={updatingId === item.id}
                     />
-                    
+
                     <p className="font-semibold">${lineTotal}</p>
-                    
+
                     <button
                       onClick={() => handleRemove(item)}
                       disabled={updatingId === item.id}
@@ -144,7 +148,9 @@ const CartPage = () => {
               <span className="font-semibold">
                 Subtotal ({totals.items} item{totals.items !== 1 ? "s" : ""})
               </span>
-              <span className="text-lg font-bold">${totals.subtotal.toFixed(2)}</span>
+              <span className="text-lg font-bold">
+                ${totals.subtotal.toFixed(2)}
+              </span>
             </div>
 
             <button

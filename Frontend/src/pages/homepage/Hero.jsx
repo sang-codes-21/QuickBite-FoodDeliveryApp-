@@ -5,7 +5,7 @@ import Indian from "../../assets/categoriesImage/Indian.jpg";
 import Japanese from "../../assets/categoriesImage/Japanese.jpg";
 import Korean from "../../assets/categoriesImage/Korean.jpg";
 import Pan from "../../assets/categoriesImage/pan.jpg";
-import curry from "../../assets/curry.png";
+
 const Hero = ({ onSearch }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const images = [
@@ -14,7 +14,7 @@ const Hero = ({ onSearch }) => {
       alt: "Indian",
       className: "w-[48%] h-[45%] ",
       mx: 5,
-      my: -10,
+      my: -12,
       x: 320,
       y: -40,
       initx: 20,
@@ -24,6 +24,8 @@ const Hero = ({ onSearch }) => {
       src: Pan,
       alt: "Pan",
       className: "w-[43%] h-[43%]",
+      mx: 0,
+      my: -8,
       initx: 35,
       inity: 25,
       x: 12,
@@ -34,6 +36,8 @@ const Hero = ({ onSearch }) => {
       src: Korean,
       alt: "Korean",
       className: "w-[43%] h-[43%] ",
+      mx: 0,
+      my: -5,
       initx: 50,
       inity: 20,
       x: 25,
@@ -69,15 +73,15 @@ const Hero = ({ onSearch }) => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${curry})`,
-          filter: 'blur(4px)',
-         
-          opacity: 0.2, 
-          zIndex: -1, 
+          background: "linear-gradient(to right, #facfcff9, #ff0303ff)",
+          filter: "blur(4px)",
+
+          opacity: 0.2,
+          zIndex: -1,
         }}
       ></div>
-      
-      <div className=" md:w-[50%] mt-10  md:ml-16" >
+
+      <div className=" md:w-[50%] mt-10  md:ml-16">
         <h1 className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
           छिटो मिठो{" "}
           <span className=" bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text text-transparent">
@@ -110,11 +114,11 @@ const Hero = ({ onSearch }) => {
             </button>
           </form>
 
-          <div className=" flex p-4 flex-wrap items-center gap-3 text-sm">
-            <span className="px-3 py-1 rounded-full bg-orange-400  border border-orange-500 text-white font-bold shadow-md">
+          <div className=" flex p-4 flex-wrap items-center gap-3 text-xs">
+            <span className="px-3 py-1  rounded-full bg-orange-400  border border-orange-500/40 text-white font-bold shadow-md">
               30 min avg delivery
             </span>
-            <span className="px-3 py-1 rounded-full bg-red-600/80  border border-red-700 text-white font-bold shadow-md">
+            <span className="px-3 py-1 rounded-full bg-red-600/80  border border-red-700/40 text-white font-bold shadow-md">
               Live order tracking
             </span>
           </div>
@@ -122,7 +126,7 @@ const Hero = ({ onSearch }) => {
       </div>
 
       <motion.div
-        className=" flex flex-wrap mt-16 md:mt-14 md:w-[50%]"
+        className=" flex flex-wrap mt-12 md:mt-14 md:w-[50%]"
         onHoverStart={() => sethovered(true)}
         onHoverEnd={() => sethovered(false)}
       >
@@ -131,7 +135,7 @@ const Hero = ({ onSearch }) => {
             key={index}
             src={img.src}
             alt={img.alt}
-            className={`rounded-3xl ${img.className}`}
+            className={`rounded-lg md:rounded-2xl ${img.className}`}
             animate={
               isMobile
                 ? { x: img.mx || img.x, y: img.my }

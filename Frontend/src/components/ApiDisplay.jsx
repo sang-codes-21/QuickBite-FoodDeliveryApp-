@@ -9,7 +9,12 @@ import delivery from "../assets/delivery.gif";
 import CategoriesSection from "../pages/homepage/CategoriesSection.jsx";
 import MostPopularSection from "../pages/homepage/MostPopularSection.jsx";
 
-const ApiDisplay = ({ setCartCount, searchQuery }) => {
+const ApiDisplay = ({
+  setCartCount,
+  searchQuery,
+  setSearchQuery,
+  setFavCount,
+}) => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
@@ -35,12 +40,12 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
   }, [handleClick]);
 
   let filteredFoods = foods;
-  
+
   if (searchQuery) {
-    filteredFoods = foods.filter(food => {
+    filteredFoods = foods.filter((food) => {
       const title = food.title?.toLowerCase() || "";
       const search = searchQuery.toLowerCase();
-      
+
       return title.includes(search);
     });
   }
@@ -52,6 +57,11 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
           foods={filteredFoods}
           selectedCuisine={`Search: "${searchQuery}"`}
           setCartCount={setCartCount}
+          setFavCount={setFavCount}
+          clearSearch={() => {
+            setSelectedCuisine("All");
+            setSearchQuery("");
+          }}
         />
       )}
 
@@ -63,7 +73,6 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
 
       <RestaurantCategories />
 
-   
       {loading && (
         <div className="text-center mt-8">
           <p className="text-gray-500">
@@ -80,6 +89,7 @@ const ApiDisplay = ({ setCartCount, searchQuery }) => {
           foods={filteredFoods}
           selectedCuisine={selectedCuisine}
           setCartCount={setCartCount}
+          setFavCount={setFavCount}
         />
       )}
     </div>
