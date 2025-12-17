@@ -1,4 +1,8 @@
-const JSON_SERVER_BASE = "http://localhost:3001";
+const LOCAL_BASE = "http://localhost:3001";
+const RENDER_BASE = "https://quickbite-fooddeliveryapp.onrender.com";
+
+const JSON_SERVER_BASE =
+  window.location.hostname === "localhost" ? LOCAL_BASE : RENDER_BASE;
 
 export const FetchAllCuisines = async (cuisine) => {
   const trimmed = cuisine && cuisine.trim();
@@ -26,7 +30,6 @@ export const FetchSingleFood = async (id) => {
   return data;
 };
 
-
 export async function FetchCart() {
   // Fetch cart rows
   const cartRes = await fetch(`${JSON_SERVER_BASE}/cart`);
@@ -46,7 +49,8 @@ export async function FetchCart() {
 
   const enriched = cart.map((row) => ({
     ...row,
-    menuItem: menuItems.find((m) => Number(m.id) === Number(row.menuItemId)) || null,
+    menuItem:
+      menuItems.find((m) => Number(m.id) === Number(row.menuItemId)) || null,
   }));
 
   return enriched;
