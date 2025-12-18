@@ -1,8 +1,4 @@
-const LOCAL_BASE = "http://localhost:3001";
-const RENDER_BASE = "https://quickbite-fooddeliveryapp.onrender.com";
-
-const JSON_SERVER_BASE =
-  window.location.hostname === "localhost" ? LOCAL_BASE : RENDER_BASE;
+const JSON_SERVER_BASE = "https://xittoomitthoofooddelivaryapp.onrender.com";
 
 export const FetchAllCuisines = async (cuisine) => {
   const trimmed = cuisine && cuisine.trim();
